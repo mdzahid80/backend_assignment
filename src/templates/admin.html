@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - User Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mt-5">Admin Panel - User Management</h1>
+    <!-- Form to Create or Update Users -->
+    <form method="POST" action="{{ url_for('admin_dashboard') }}" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone_number.label(class="form-label") }}
+            {{ form.phone_number(class="form-control") }}
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="user_id" value="{{ form.email.data or '' }}">
+            <button type="submit" class="btn btn-primary btn-block">{{ form.submit.label.text }}</button>
+        </div>
+    </form>
+    <h4>{{ message }}</h4>
+    
+    <!-- Display List of Users -->
+    <h2 class="text-center mt-5">All Users</h2>
+    <div class="container ride-container">
+        <div class="row">
+            {% for user in users %}
+            <div class="col-12">
+                <div class="ride-block">
+                    <h5><strong>Name:</strong> {{ user.name }}</h5>
+                    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <button onclick="deleteUser('{{ user.email }}')">Delete</button> 
+                    <button onclick="editUser('{{ user.name }}', '{{ user.email }}', '{{ user.phone_number }}')">Edit</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom JS for CRUD operations -->
+<script>
+   
+
+    function deleteUser(email) {
+    fetch(`/admin/users/${email}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+            location.reload(); // Reload the page to reflect the changes
+        } else {
+            alert(data.error);
+        }
+    })
+    
+    .catch(error => console.error('Error:', error));
+    }
+
+    function editUser(name, email, phone_number) {
+        document.querySelector('input[name="name"]').value = name;
+        document.querySelector('input[name="email"]').value = email;
+        document.querySelector('input[name="phone_number"]').value = phone_number;
+    }
+
+    
+</script>
+
+</body>
+</html>

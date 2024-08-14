@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Sharing Platform</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mt-5">Taxi Sharing Platform</h1>
+    <form method="POST" action="/" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone_number.label(class="form-label") }}
+            {{ form.phone_number(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.start_location.label(class="form-label") }}
+            {{ form.start_location(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.end_location.label(class="form-label") }}
+            {{ form.end_location(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.date_time.label(class="form-label") }}
+            {{ form.date_time(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.available_seats.label(class="form-label") }}
+            {{ form.available_seats(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.price_per_seat.label(class="form-label") }}
+            {{ form.price_per_seat(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary btn-block") }}
+        </div>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

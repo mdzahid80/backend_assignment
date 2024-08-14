@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Sharing Platform - Rides</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .ride-block {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .ride-block h5 {
+            margin-bottom: 15px;
+        }
+        .ride-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container ride-container">
+    <h1 class="text-center mt-5">Available Rides</h1>
+    <div class="row">
+        {% for ride in rides %}
+        <div class="col-12">
+            <div class="ride-block">
+                <h5><strong>Name:</strong> {{ ride.name }}</h5>
+                <p><strong>Phone Number:</strong> {{ ride.phone_number }}</p>
+                <p><strong>Email:</strong> {{ ride.email }}</p>
+                <p><strong>Start Location:</strong> {{ ride.start_location }}</p>
+                <p><strong>End Location:</strong> {{ ride.end_location }}</p>
+                <p><strong>Date & Time:</strong> {{ ride.date_time }}</p>
+                <p><strong>Available Seats:</strong> {{ ride.available_seats }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
